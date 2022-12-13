@@ -31,7 +31,7 @@ class NameLoadTest {
     }
 
     @Test
-    void checkValidateValue(){
+    void checkValidateValue() {
         NameLoad nameLoad = new  NameLoad();
         assertThatThrownBy(() -> nameLoad.parse("name="))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -41,7 +41,7 @@ class NameLoadTest {
     @Test
     void checkParseEmpty() {
         NameLoad nameLoad = new NameLoad();
-        assertThatThrownBy(()-> nameLoad.parse())
+        assertThatThrownBy(() -> nameLoad.parse())
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("Names array is empty");
     }

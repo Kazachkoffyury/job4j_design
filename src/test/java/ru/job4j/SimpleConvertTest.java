@@ -32,8 +32,8 @@ class SimpleConvertTest {
         assertThat(list).isNotEmpty()
                 .contains("first")
                 .hasSize(5)
-                .containsAnyOf("1","2","four")
-                .doesNotContain("1","2","3")
+                .containsAnyOf("1", "2", "four")
+                .doesNotContain("1", "2", "3")
                 .startsWith("first")
                 .endsWith("five");
     }
@@ -41,7 +41,7 @@ class SimpleConvertTest {
     @Test
     void checkSet() {
         SimpleConvert simpleConvert = new SimpleConvert();
-        Set<String> set = simpleConvert.toSet("first", "second", "three", "four", "five","five","five");
+        Set<String> set = simpleConvert.toSet("first", "second", "three", "four", "five", "five", "five");
         assertThat(set).isNotEmpty()
                 .contains("five")
                 .hasSize(5)
@@ -51,12 +51,12 @@ class SimpleConvertTest {
     @Test
     void checkMap() {
         SimpleConvert simpleConvert = new SimpleConvert();
-        Map<String,Integer> map = simpleConvert.toMap("first", "second","three","four","five");
+        Map<String,Integer> map = simpleConvert.toMap("first", "second", "three", "four", "five");
         assertThat(map).isNotEmpty()
                 .hasSize(5)
                 .containsKey("first")
                 .containsValue(3)
                 .doesNotContainValue(5)
-                .containsEntry("first",0);
+                .containsEntry("first", 0);
     }
 }

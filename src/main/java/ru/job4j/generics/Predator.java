@@ -1,4 +1,4 @@
-package ru.job4j.Generics;
+package ru.job4j.generics;
 
 public class Predator extends Animal {
 }

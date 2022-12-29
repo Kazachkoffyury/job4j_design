@@ -24,7 +24,7 @@ public class SimpleArrayList<T> implements SimpleList<T> {
     @Override
     public T set(int index, T newValue) {
         T rsl = get(index);
-        this.container[index] = newValue;
+        container[index] = newValue;
         return rsl;
     }
 
@@ -32,7 +32,7 @@ public class SimpleArrayList<T> implements SimpleList<T> {
     public T remove(int index) {
         T rsl = get(index);
         System.arraycopy(container, index + 1, container, index, container.length - index - 1);
-        set(size - 1, null);
+        container[container.length - 1] = null;
         size--;
         modCount++;
         return rsl;

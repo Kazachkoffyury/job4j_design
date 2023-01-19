@@ -1,5 +1,7 @@
 package ru.job4j.simplelinkedlist;
 
+import org.w3c.dom.Node;
+
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -22,7 +24,15 @@ public SimpleLinkedList() {
       if (size == 0) {
           head = new Node<>(value);
       } else {
-          getLastNode(size - 1).next = new Node<>(value);
+          Node<E> nodeTemp = this.head;
+          int index = size - 1;
+          if (Objects.checkIndex(index, size) == index) {
+              for (int i = 0; i < index; i++) {
+                  nodeTemp = nodeTemp.next;
+              }
+          }
+          nodeTemp.next = new Node<>(value);
+
 
       }
       size++;
@@ -53,7 +63,7 @@ public SimpleLinkedList() {
     public Iterator<E> iterator() {
         return new Iterator<E>() {
             final int expectedModCount = modCount;
-            Node<E> currentNode = head;
+            SimpleLinkedList.Node<E> currentNode = head;
             private E result;
 
 

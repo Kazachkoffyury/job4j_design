@@ -1,6 +1,9 @@
 package ru.job4j;
 
+import ru.job4j.simplelinkedlist.LinkedList;
+
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.Objects;
 
 public class SimpleSet {
@@ -28,6 +31,9 @@ public class SimpleSet {
         }
         return result;
     }
+
+
+
 
     private void grow() {
         container = Arrays.copyOf(container, container.length * 2);

@@ -11,6 +11,7 @@ public class SimpleLinkedList<E> implements LinkedList<E> {
     private int size = 0;
     private int modCount = 0;
     private Node<E> head;
+    private Node<E> tail;
 
 
 public SimpleLinkedList() {
@@ -20,21 +21,18 @@ public SimpleLinkedList() {
     @Override
     public void add(E value) {
 
-
-      if (size == 0) {
-          head = new Node<>(value);
+      if (head == null) {
+          Node<E> newNode = new Node<>(value);
+          head = newNode;
+          tail = newNode;
       } else {
-          Node<E> nodeTemp = this.head;
-          int index = size - 1;
-          if (Objects.checkIndex(index, size) == index) {
-              for (int i = 0; i < index; i++) {
-                  nodeTemp = nodeTemp.next;
-              }
-          }
-          nodeTemp.next = new Node<>(value);
-
+          Node<E> newNode = new Node<>(value);
+          newNode.prev = tail;
+          tail.next = newNode;
+          tail = newNode;
 
       }
+
       size++;
       modCount++;
     }
@@ -49,15 +47,7 @@ public SimpleLinkedList() {
         return result.item;
     }
 
-    private Node<E> getLastNode(int index) {
-        Node<E> nodeTemp = this.head;
-        if (Objects.checkIndex(index, size) == index) {
-            for (int i = 0; i < index; i++) {
-                nodeTemp = nodeTemp.next;
-            }
-        }
-        return nodeTemp;
-    }
+
 
     @Override
     public Iterator<E> iterator() {
@@ -90,6 +80,7 @@ public SimpleLinkedList() {
     private static class Node<E> {
         private E item;
         private Node<E> next;
+        private Node<E> prev;
 
 
         Node(E element) {

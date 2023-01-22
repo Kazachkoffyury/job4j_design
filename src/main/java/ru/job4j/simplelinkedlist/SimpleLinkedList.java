@@ -1,6 +1,6 @@
 package ru.job4j.simplelinkedlist;
 
-import org.w3c.dom.Node;
+
 
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
@@ -11,7 +11,7 @@ public class SimpleLinkedList<E> implements LinkedList<E> {
     private int size = 0;
     private int modCount = 0;
     private Node<E> head;
-    private Node<E> tail;
+
 
 
 public SimpleLinkedList() {
@@ -20,19 +20,17 @@ public SimpleLinkedList() {
 
     @Override
     public void add(E value) {
-
+      Node<E> newNode = new Node<>(value);
       if (head == null) {
-          Node<E> newNode = new Node<>(value);
           head = newNode;
-          tail = newNode;
       } else {
-          Node<E> newNode = new Node<>(value);
-          newNode.prev = tail;
-          tail.next = newNode;
-          tail = newNode;
+          Node<E> current = head;
+          while (current.next != null) {
+              current = current.next;
+          }
+          current.next = newNode;
 
       }
-
       size++;
       modCount++;
     }
@@ -53,7 +51,7 @@ public SimpleLinkedList() {
     public Iterator<E> iterator() {
         return new Iterator<E>() {
             final int expectedModCount = modCount;
-            SimpleLinkedList.Node<E> currentNode = head;
+            Node<E> currentNode = head;
             private E result;
 
 
@@ -80,7 +78,7 @@ public SimpleLinkedList() {
     private static class Node<E> {
         private E item;
         private Node<E> next;
-        private Node<E> prev;
+
 
 
         Node(E element) {
